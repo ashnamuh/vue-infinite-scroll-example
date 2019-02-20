@@ -30,9 +30,13 @@ export default {
     },
     accumulatedLength () {
       return this.$store.getters['notice/getAccumulatedLength']()
-    }
+    },
+    ads () {
+      return this.$store.getters['ads/getAds']()
+    },
   },
   async created () {
+    await this.$store.dispatch('ads/fetch', {page: 1, limit: 10})
   },
   methods: {
     async loadMore () {
