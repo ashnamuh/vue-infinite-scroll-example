@@ -1,10 +1,16 @@
+import axios from 'axios'
 import Vue from 'vue'
+import VueAxios from 'vue-axios'
+import VueinfiniteScroll from 'vue-infinite-scroll'
 import App from './App.vue'
 import router from './router'
 import store from './store/'
 import './registerServiceWorker'
 
 Vue.config.productionTip = false
+
+Vue.use(VueAxios, axios)
+Vue.use(VueinfiniteScroll)
 
 new Vue({
   router,
