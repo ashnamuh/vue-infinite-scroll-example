@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     contents () {
-      return this.$store.getters['notice/getContents']()
+      return this.$store.getters['getContents']()
     },
   },
   created () {
@@ -36,7 +36,7 @@ export default {
   methods: {
     async loadMore () {
       console.log('loadMore')
-      await this.$store.dispatch('notice/fetch', {order: 'desc', category: 1, page: this.page})
+      await this.$store.dispatch('fetchPosts', {order: 'desc', category: 1, page: this.page})
       this.page++
     },
   }

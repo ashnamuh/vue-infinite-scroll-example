@@ -7,11 +7,6 @@ import getters from './getters'
 import mutations from './mutations'
 import state from './state'
 
-// Load my custom modules
-import notice from './modules/notice'
-import category from './modules/category'
-import ads from './modules/advertisement'
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -19,10 +14,5 @@ export default new Vuex.Store({
   state,
   mutations,
   getters,
-  actions,
-  modules: {
-    notice,
-    category,
-    ads
-  }
+  actions
 })
