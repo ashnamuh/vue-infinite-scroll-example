@@ -17,9 +17,34 @@
       width: 480px;
     }
     @media (max-width: 480px) {
-      margin: 30px 15px;
+      margin: 30px 25px;
     }
   }
+}
+.text-red {
+  color: #fa5252;
+}
+.border-outline {
+  border: 2px solid #dee2e6;
+}
+.facebook-login {
+  background-color: #3b5998;
+  color: #ffffff;
+}
+.google-login {
+  background-color: #ea4335;
+  color: #ffffff;
+}
+.naver-login {
+  background-color: #00bd39;
+  color: #ffffff;
+}
+.kakao-login {
+  background-color: #ffdc00;
+  color: #ffffff;
+}
+.pointer-cursor {
+  cursor: pointer;
 }
 body, ul, li, h1, h2, h3, h4, h5, h6 {
   margin: 0;

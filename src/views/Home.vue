@@ -4,14 +4,17 @@
       :categories="categories"
       :visible.sync="visibleCategoryModal"
       :selectedCategory.sync="selectedCategory"
-      @resetData="resetData"
-      >
+      @resetData="resetData">
     </CategoryModal>
+    <SignupModal
+      :visible.sync="visibleSignupModal">
+    </SignupModal>
     <header>
-      <span @click="toggleClickButton">필터</span>
+      <span class="pointer-cursor" @click="visibleSignupModal = true">가입하기</span>
+      <span class="pointer-cursor" @click="toggleClickButton">필터</span>
       <img alt="Vue logo" src="../assets/logo_comento.png">
-      <span @click="resetOrder('asc')" :class="{active: order === 'asc' }">오름차순</span>
-      <span @click="resetOrder('desc')" :class="{active: order === 'desc' }">내림차순</span>
+      <span class="pointer-cursor" @click="resetOrder('asc')" :class="{active: order === 'asc' }">오름차순</span>
+      <span class="pointer-cursor" @click="resetOrder('desc')" :class="{active: order === 'desc' }">내림차순</span>
     </header>
     <PostCard v-for="post in contents" :key="post.no" :post="post"></PostCard>
     <div v-infinite-scroll="loadMore"
@@ -26,12 +29,14 @@
 import AdCard from '@/components/AdCard.vue'
 import CategoryModal from '@/components/CategoryModal.vue'
 import PostCard from '@/components/PostCard.vue'
+import SignupModal from '@/components/SignupModal.vue'
 
 export default {
   name: 'home',
   components: {
     AdCard,
     CategoryModal,
+    SignupModal,
     PostCard
   },
   data () {
@@ -41,6 +46,7 @@ export default {
       categories: [],
       order: this.$route.query.order || 'desc',
       visibleCategoryModal: false,
+      visibleSignupModal: false,
       selectedCategory: this.$route.query.category || '1'
     }
   },
@@ -92,9 +98,6 @@ export default {
 
 <style scoped lang="less">
 header {
-  span {
-    cursor: pointer;
-  }
   .active {
     color: #00c854;
   }
