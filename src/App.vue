@@ -9,6 +9,26 @@
 </template>
 
 <style lang="less">
+.modal {
+  background-color: rgba(0,0,0,.7);
+  top: 0; right: 0; bottom: 0; left: 0;
+  position: fixed;
+  overflow: auto;
+  margin:  auto;
+  .modal-dialog {
+    margin: 30px auto;
+    @media (min-width: 480px) {
+      width: 480px;
+    }
+    @media (max-width: 480px) {
+      margin: 30px 15px;
+    }
+  }
+}
+body, ul, li, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -26,7 +26,7 @@ export default {
   async fetchPosts (context, query) {
     const page = query.page || 1
     const order = query.order || 'desc'
-    const category = query.category
+    const category = query.category || 1
     const interval = 4
     const postRequestUrl = `http://comento.cafe24.com/request.php?page=${page}&ord=${order}&category=${category}`
 
@@ -68,5 +68,10 @@ export default {
       const adsLength = context.state.contents.length - context.state.accumulatedLength
       context.commit('UPDATE_ADSLENGTH', adsLength)
     }
+  },
+  resetData (context) {
+    context.commit('RESET_CONTENTS')
+    context.commit('RESET_LENGTH')
+    context.commit('RESET_ADSLENGTH')
   }
 }
