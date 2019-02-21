@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <ul>
-      <li class="notice" v-for="notice in notices" :key="notice.no">
+      <li class="notice" v-for="notice in contents" :key="notice.title">
         title: {{ notice.title }}
         no: {{ notice.no }}
       </li>
@@ -21,28 +21,24 @@ export default {
   },
   data () {
     return {
-      page: 1
+      page: 1,
+      adsCount: 1,
+      notis: []
     }
   },
   computed: {
-    notices () {
-      return this.$store.getters['notice/getNotices']()
-    },
-    accumulatedLength () {
-      return this.$store.getters['notice/getAccumulatedLength']()
-    },
-    ads () {
-      return this.$store.getters['ads/getAds']()
+    contents () {
+      return this.$store.getters['notice/getContents']()
     },
   },
-  async created () {
-    await this.$store.dispatch('ads/fetch', {page: 1, limit: 10})
+  created () {
   },
   methods: {
     async loadMore () {
+      console.log('loadMore')
       await this.$store.dispatch('notice/fetch', {order: 'desc', category: 1, page: this.page})
       this.page++
-    }
+    },
   }
 }
 </script>
