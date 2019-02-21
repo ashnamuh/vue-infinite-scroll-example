@@ -7,10 +7,12 @@
       @resetData="resetData"
       >
     </CategoryModal>
-    category: {{selectedCategory}}
-    <button @click="handleClickButton">필터</button>
+    <header>
+      <span @click="toggleClickButton">필터</span>
       <img alt="Vue logo" src="../assets/logo_comento.png">
       <span @click="resetOrder('asc')" :class="{active: order === 'asc' }">오름차순</span>
+      <span @click="resetOrder('desc')" :class="{active: order === 'desc' }">내림차순</span>
+    </header>
     <PostCard v-for="post in contents" :key="post.no" :post="post"></PostCard>
     <div v-infinite-scroll="loadMore"
       infinite-scroll-disabled="isLoading"
@@ -37,6 +39,7 @@ export default {
       page: 1,
       isLoading: false,
       categories: [],
+      order: this.$route.query.order || 'desc',
       visibleCategoryModal: false,
       selectedCategory: this.$route.query.category || '1'
     }
@@ -52,19 +55,35 @@ export default {
   },
   methods: {
     async loadMore () {
-      console.log('loadMore')
-      this.isLoading = true
-      await this.$store.dispatch('fetchPosts', {order: 'desc', category: this.selectedCategory, page: this.page})
-      this.isLoading = false
-      this.page++
-    },
-    handleClickButton () {
-      this.visibleCategoryModal = !this.visibleCategoryModal
+      this.toggleLoading()
+      await this.fetchPosts()
+      this.toggleLoading()
+      this.addPage()
     },
     async resetData () {
       await this.$store.dispatch('resetData')
+      this.resetPage()
+      await this.fetchPosts()
+      this.addPage()
+    },
+    async resetOrder (order) {
+      this.order = order
+      this.$router.push({ query: {...this.$route.query, order: this.order } })
+      await this.resetData()
+    },
+    async fetchPosts () {
+      await this.$store.dispatch('fetchPosts', {order: this.order, category: this.selectedCategory, page: this.page})
+    },
+    toggleClickButton () {
+      this.visibleCategoryModal = !this.visibleCategoryModal
+    },
+    toggleLoading () {
+      this.isLoading = !this.isLoading
+    },
+    resetPage () {
       this.page = 1
-      await this.$store.dispatch('fetchPosts', {order: 'desc', category: this.selectedCategory, page: this.page})
+    },
+    addPage () {
       this.page++
     }
   }
@@ -72,6 +91,14 @@ export default {
 </script>
 
 <style scoped lang="less">
+header {
+  span {
+    cursor: pointer;
+  }
+  .active {
+    color: #00c854;
+  }
+}
 .post {
   margin-top: 20px;
   height: 200px;

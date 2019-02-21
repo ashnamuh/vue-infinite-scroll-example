@@ -3,7 +3,7 @@
     v-if="visible" @click.self="closeModal">
     <div class="category-modal-dialog modal-dialog">
       <header class="category-modal-header">
-        <a class="close" @click.self="closeModal">×</a>
+        <a class="close pointer-cursor" @click.self="closeModal">×</a>
         <h4>필터</h4>
       </header>
       <div class="category-modal-body">
@@ -14,9 +14,9 @@
           </li>
         </ul>
       </div>
-      <div class="category-modal-footer">
-        <button class="save" @click.self="saveCategories">저장</button>
-      </div>
+      <footer class="category-modal-footer">
+        <button class="pointer-cursor" @click.self="saveCategories">저장</button>
+      </footer>
     </div>
   </div>
 </template>
@@ -49,10 +49,13 @@ export default {
       this.$emit('update:visible', false)
     },
     saveCategories () {
-      this.$emit('update:selectedCategory', this.checkedCategory)
-      this.$emit('update:visible', false)
+      this.updateCategory()
+      this.closeModal()
       this.$router.push({ query: {...this.$route.query, category: this.checkedCategory } })
       this.$emit('resetData')
+    },
+    updateCategory () {
+      this.$emit('update:selectedCategory', this.checkedCategory)
     }
   }
 }
