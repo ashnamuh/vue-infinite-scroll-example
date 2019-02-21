@@ -9,8 +9,8 @@
     </CategoryModal>
     category: {{selectedCategory}}
     <button @click="handleClickButton">필터</button>
-    <button @click="resetData">리셋</button>
-    <img alt="Vue logo" src="../assets/logo.png">
+      <img alt="Vue logo" src="../assets/logo_comento.png">
+      <span @click="resetOrder('asc')" :class="{active: order === 'asc' }">오름차순</span>
     <PostCard v-for="post in contents" :key="post.no" :post="post"></PostCard>
     <div v-infinite-scroll="loadMore"
       infinite-scroll-disabled="isLoading"
