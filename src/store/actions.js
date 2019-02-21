@@ -30,7 +30,13 @@ export default {
       const data = _.cloneDeep(response.data)
 
       const rest = context.state.accumulatedLength % interval
-      const adPage = context.state.adsLength + 1
+      let adPage = context.state.adsLength + 1
+      if (!rest) {
+        const adsResponse = await axios.get(`http://comento.cafe24.com/ads.php?page=${adPage}&limit=1`)
+        context.commit('UPDATE_CONTENTS', adsResponse.data.list)
+        context.commit('UPDATE_ADSLENGTH', adsResponse.data.list.length)
+        adPage++
+      }
       const contents = await accumulateContents(data.list, interval, adPage, rest)
 
       context.commit('UPDATE_CONTENTS', contents)
