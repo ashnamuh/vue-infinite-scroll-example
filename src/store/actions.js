@@ -7,14 +7,19 @@ const accumulateContents = async (contents, interval, adPage, rest) => {
   if (contents.length <= interval) {
     return contents
   }
+  const adsResponse = await axios.get(adsRequestUrl)
+
+  const ad = adsResponse.data.list.map(o => {
+    o.isAd = true
+    return o
+  })
+
   if (rest) {
     const nextAsLength = interval - rest
-    const adData = await axios.get(adsRequestUrl)
-    return contents.splice(0, nextAsLength).concat(adData.data.list).concat(await accumulateContents(contents, interval, adPage + 1))
+    return contents.splice(0, nextAsLength).concat(ad).concat(await accumulateContents(contents, interval, adPage + 1))
   }
-  const adData = await axios.get(adsRequestUrl)
 
-  return contents.splice(0, interval).concat(adData.data.list).concat(await accumulateContents(contents, interval, adPage + 1))
+  return contents.splice(0, interval).concat(ad).concat(await accumulateContents(contents, interval, adPage + 1))
 }
 
 export default {
@@ -33,7 +38,11 @@ export default {
       let adPage = context.state.adsLength + 1
       if (!rest) {
         const adsResponse = await axios.get(`http://comento.cafe24.com/ads.php?page=${adPage}&limit=1`)
-        context.commit('UPDATE_CONTENTS', adsResponse.data.list)
+        const ad = adsResponse.data.list.map(o => {
+          o.isAd = true
+          return o
+        })
+        context.commit('UPDATE_CONTENTS', ad)
         context.commit('UPDATE_ADSLENGTH', adsResponse.data.list.length)
         adPage++
       }
