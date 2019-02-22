@@ -16,7 +16,8 @@
       <span class="pointer-cursor" @click="resetOrder('asc')" :class="{active: order === 'asc' }">오름차순</span>
       <span class="pointer-cursor" @click="resetOrder('desc')" :class="{active: order === 'desc' }">내림차순</span>
     </header>
-    <PostCard v-for="post in contents" :key="post.no" :post="post"></PostCard>
+    <div class="contents">
+      <PostCard v-for="post in contents" :key="post.no" :post="post" :categories="categories"></PostCard>
     <div v-infinite-scroll="loadMore"
       infinite-scroll-disabled="isLoading"
       infinite-scroll-distance="50">

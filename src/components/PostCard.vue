@@ -1,7 +1,7 @@
 <template>
-  <div class="post-card">
+  <div class="post-card border-outline">
     <header>
-      <span>{{ post.category_no }}</span>
+      <span>{{ category.name }}</span>
       <span>{{ post.no }}</span>
     </header>
     <div>
@@ -16,7 +16,19 @@
 export default {
   name: 'PostCard',
   props: {
-    post: Object
+    post: {
+      typle: Object,
+      require: true,
+    },
+    categories: {
+      type: Array,
+      require: true,
+    },
+  },
+  computed: {
+    category () {
+      return this.categories.find(o => o.no === this.post.category_no)
+    }
   }
 }
 </script>
