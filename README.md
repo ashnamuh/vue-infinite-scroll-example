@@ -1,5 +1,7 @@
 # vue-infinite-scroll-example
 
+Example of infinite scroll cards with dynamic advertisement card
+
 ## Project setup
 ```
 npm install
