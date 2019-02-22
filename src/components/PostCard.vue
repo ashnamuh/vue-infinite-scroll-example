@@ -40,7 +40,7 @@ export default {
 
 <style scoped lang="less">
 .post-card{
-  margin-top: 20px;
+  margin-bottom: 20px;
   header {
     background-color: #00c854;
     color: #ffffff;

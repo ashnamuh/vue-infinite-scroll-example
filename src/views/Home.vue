@@ -7,13 +7,14 @@
       @resetData="resetData">
     </CategoryModal>
     <header>
-      <span class="pointer-cursor" @click="toggleClickButton">필터</span>
-      <img alt="Vue logo" src="../assets/logo_comento.png">
-      <span class="pointer-cursor" @click="resetOrder('asc')" :class="{active: order === 'asc' }">오름차순</span>
-      <span class="pointer-cursor" @click="resetOrder('desc')" :class="{active: order === 'desc' }">내림차순</span>
+      <span class="filter-category pointer-cursor" @click="toggleClickButton">필터</span>
+      <div class="filter-order">
+        <span class="pointer-cursor" @click="resetOrder('asc')" :class="{active: order === 'asc' }">오름차순</span>
+        <span class="pointer-cursor" @click="resetOrder('desc')" :class="{active: order === 'desc' }">내림차순</span>
+      </div>
     </header>
     <div class="contents">
-      <div v-for="post in contents" :key="post.no">
+      <div v-for="post in contents" :key="post.no + post.title">
         <PostCard v-if="!post.isAd" :post="post" :categories="categories"></PostCard>
         <AdCard v-if="post.isAd" :ad="post"></AdCard>
       </div>
@@ -97,12 +98,17 @@ export default {
 
 <style scoped lang="less">
 .home {
-  .contents {
-    padding: 20px
-  }
+  padding: 20px;
   header {
-    .active {
-      color: #00c854;
+    display: flex;
+    justify-content: space-between;
+    .filter-order {
+      span {
+        margin-left: 10px;
+      }
+      .active {
+        color: #00c854;
+      }
     }
   }
 }
