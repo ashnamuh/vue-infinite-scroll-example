@@ -6,11 +6,7 @@
       :selectedCategory.sync="selectedCategory"
       @resetData="resetData">
     </CategoryModal>
-    <SignupModal
-      :visible.sync="visibleSignupModal">
-    </SignupModal>
     <header>
-      <span class="pointer-cursor" @click="visibleSignupModal = true">가입하기</span>
       <span class="pointer-cursor" @click="toggleClickButton">필터</span>
       <img alt="Vue logo" src="../assets/logo_comento.png">
       <span class="pointer-cursor" @click="resetOrder('asc')" :class="{active: order === 'asc' }">오름차순</span>
@@ -34,14 +30,12 @@
 import AdCard from '@/components/AdCard.vue'
 import CategoryModal from '@/components/CategoryModal.vue'
 import PostCard from '@/components/PostCard.vue'
-import SignupModal from '@/components/SignupModal.vue'
 
 export default {
   name: 'home',
   components: {
     AdCard,
     CategoryModal,
-    SignupModal,
     PostCard
   },
   data () {

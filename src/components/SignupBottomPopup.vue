@@ -34,6 +34,8 @@ export default {
       default: false
     }
   },
+  data () {
+  },
   methods: {
     closeModal () {
       this.$emit('update:visible', false)
@@ -72,7 +74,6 @@ export default {
         font-weight: 600;
         font-size: 16px;
         padding: 15px;
-        text-align: center;
 
         &:not(:last-child) {
           margin-bottom: 10px;

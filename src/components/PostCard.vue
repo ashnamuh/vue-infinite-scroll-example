@@ -1,5 +1,5 @@
 <template>
-  <div class="post-card border-outline">
+  <router-link class="post-card border-outline" :to="`posts/${post.no}`" tag="div">
     <header>
       <span v-if="category">카테고리: {{ category.name }}</span>
       <span>글번호: {{ post.no }}</span>
@@ -11,7 +11,7 @@
         <p class="ellipsis">{{ post.contents }}</p>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
