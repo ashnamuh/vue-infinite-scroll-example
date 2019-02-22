@@ -1,8 +1,11 @@
 <template>
   <div class="post-detail">
     <SignupModal
-      :visible.sync="visibleSignupModal">
+      :visible.sync="visibleSignupModal"
+      @enableSignupPopup="enableSignupPopup"
+      >
     </SignupModal>
+    <SignupBottomPopup :visible.sync="visibleSignupBottomPopupModal"></SignupBottomPopup>
     <div class="post-detail-wrapper border-outline">
       <header>
         <span>글번호: {{ post.no }}</span>
@@ -24,18 +27,21 @@
 // @ is an alias to /src
 import PostReply from '@/components/PostReply.vue'
 import SignupModal from '@/components/SignupModal.vue'
+import SignupBottomPopup from '@/components/SignupBottomPopup.vue'
 
 export default {
   name: 'Post',
   components: {
     PostReply,
-    SignupModal
+    SignupModal,
+    SignupBottomPopup
   },
   data () {
     return {
       post: {},
       replies: [],
       visibleSignupModal: false,
+      visibleSignupBottomPopupModal: false
     }
   },
   computed: {
@@ -49,7 +55,7 @@ export default {
     this.replies = replies
   },
   mounted () {
-    this.visibleSignupModal = true
+    this.enableSignupModal()
   },
   methods: {
     async getPost () {
@@ -57,6 +63,12 @@ export default {
       const detailRequestUrl = `http://comento.cafe24.com/detail.php?req_no=${postNo}`
       const { data } = await this.axios.get(detailRequestUrl)
       return data.detail
+    },
+    enableSignupModal () {
+      this.visibleSignupModal = true
+    },
+    enableSignupPopup () {
+      this.visibleSignupBottomPopupModal = true
     }
   }
 }

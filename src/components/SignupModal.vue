@@ -37,6 +37,10 @@ export default {
   methods: {
     closeModal () {
       this.$emit('update:visible', false)
+      this.enableSignupPopup()
+    },
+    enableSignupPopup () {
+      this.$emit('enableSignupPopup')
     }
   }
 }

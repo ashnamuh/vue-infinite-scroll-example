@@ -1,24 +1,15 @@
 <template>
-  <div class="signup-modal modal"
-    v-if="visible" @click.self="closeModal">
-    <div class="signup-modal-dialog modal-dialog">
-      <header class="signup-modal-header">
-        <a class="close pointer-cursor" @click.self="closeModal">×</a>
-        <h4>회원가입</h4>
-      </header>
-      <div class="signup-modal-body">
-        <div class="signup-modal-body-description border-outline">
-          지금 꿈꾸던 기업에 재직 중인 현직자와<br><span class="text-red">익명</span>으로 대화할 수 있습니다.
-        </div>
-        <div class="signup-modal-body-signups">
-          <div class="facebook-login border-outline"><a>페이스북 계정으로 회원가입</a></div>
-          <div class="google-login border-outline"><a>구글 계정으로 회원가입</a></div>
-          <div class="naver-login border-outline"><a>네이버 계정으로 회원가입</a></div>
-          <div class="kakao-login border-outline"><a>카카오 계정으로 회원가입</a></div>
-        </div>
+  <div class="signup-bottom-popup border-outline" v-if="visible">
+    <div class="signup-bottom-popup-body">
+      <div class="signup-bottom-popup-description">
+        지금 꿈꾸던 기업에 재직 중인 현직자와 <span class="text-red">익명</span>으로 대화할 수 있습니다.
       </div>
-      <div class="signup-modal-footer">
-        <span class="pointer-cursor" @click.self="closeModal">나중에 하기</span>
+      <div class="signup-bottom-popup-buttons-desktop">
+        <div class="signup-button border-outline"><a @click.self="closeModal">SNS계정으로 빠른 회원가입</a></div>또는
+        <div class="login-button border-outline"><a @click.self="closeModal">로그인</a></div>
+      </div>
+      <div class="signup-bottom-popup-buttons-mobile">
+        <div class="signup-button border-outline"><a @click.self="closeModal">회원가입</a></div>
       </div>
     </div>
   </div>
@@ -26,15 +17,13 @@
 
 <script>
 export default {
-  name: 'SignupModal',
+  name: 'SignupBottomPopup',
   props: {
     visible: {
       type: Boolean,
       require: true,
       default: false
     }
-  },
-  data () {
   },
   methods: {
     closeModal () {
@@ -45,48 +34,53 @@ export default {
 </script>
 
 <style scoped lang="less">
-.signup-modal {
-  .signup-modal-dialog {
-    background: #fff;
-  }
-  .signup-modal-header {
-    font-size: 28px;
-    font-weight: bold;
-    line-height: 1.29;
-    padding: 16px 16px 0 25px;
-    position: relative;
-    .close {
-      float: right;
-      font-size: 24px;
-    }
-    h4 {
+.signup-bottom-popup {
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+  overflow: auto;
+  background-color: #ffffff;
+  opacity: 0.9;
+  height: 150px;
+  .signup-bottom-popup-body {
+    padding: 15px 30px;
+    .signup-bottom-popup-description {
       text-align: center;
     }
-  }
-  .signup-modal-body {
-    padding: 25px;
-    .signup-modal-body-description {
-      padding: 20px;
-    }
-    .signup-modal-body-signups {
-      margin-top: 30px;
-      div {
-        font-weight: 600;
-        font-size: 16px;
-        padding: 15px;
+    .signup-bottom-popup-buttons-desktop {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px auto;
 
-        &:not(:last-child) {
-          margin-bottom: 10px;
+      @media (max-width: 480px) {
+        display: none;
+      }
+      div {
+        width: 180px;
+        text-align: center;
+        padding: 10px 5px;
+        a {
+          font-size: 14px;
+        }
+        &:first-child {
+          margin-right: 15px;
+        }
+        &:last-child {
+          margin-left: 15px;
         }
       }
     }
-  }
-  .signup-modal-footer {
-    text-align: center;
-    padding-bottom: 15px;
-    span {
-      font-weight: 600;
-      font-size: 16px;
+    .signup-bottom-popup-buttons-mobile {
+      margin: 10px auto;
+      @media (min-width: 481px) {
+        display: none;
+      }
+      div {
+        text-align: center;
+        padding: 10px 5px;
+      }
     }
   }
 }

@@ -43,6 +43,14 @@
   background-color: #ffdc00;
   color: #ffffff;
 }
+.signup-button {
+  background-color: #00c854;
+  color: #ffffff;
+}
+.login-button {
+  background-color: #dcdcdc;
+  color: #000000;
+}
 .pointer-cursor {
   cursor: pointer;
 }
