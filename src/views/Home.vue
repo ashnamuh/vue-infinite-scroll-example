@@ -18,6 +18,7 @@
     </header>
     <div class="contents">
       <PostCard v-for="post in contents" :key="post.no" :post="post" :categories="categories"></PostCard>
+    </div>
     <div v-infinite-scroll="loadMore"
       infinite-scroll-disabled="isLoading"
       infinite-scroll-distance="50">
@@ -98,14 +99,14 @@ export default {
 </script>
 
 <style scoped lang="less">
-header {
-  .active {
-    color: #00c854;
+.home {
+  .contents {
+    padding: 20px
   }
-}
-.post {
-  margin-top: 20px;
-  height: 200px;
-  background-color: #ffff00;
+  header {
+    .active {
+      color: #00c854;
+    }
+  }
 }
 </style>

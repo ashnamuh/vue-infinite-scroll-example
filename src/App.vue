@@ -46,6 +46,13 @@
 .pointer-cursor {
   cursor: pointer;
 }
+.ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+}
 body, ul, li, h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
@@ -54,7 +61,7 @@ body, ul, li, h1, h2, h3, h4, h5, h6 {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  // text-align: center;
   color: #2c3e50;
 }
 #nav {
