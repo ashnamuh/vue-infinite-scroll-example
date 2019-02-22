@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     adImageUrl () {
-      return `http://comento.cafe24.com/public/images/${this.ad.img}`
+      return `https://comento.cafe24.com/public/images/${this.ad.img}`
     }
   }
 }

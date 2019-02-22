@@ -60,7 +60,7 @@ export default {
   methods: {
     async getPost () {
       const postNo = this.$route.params.id
-      const detailRequestUrl = `http://comento.cafe24.com/detail.php?req_no=${postNo}`
+      const detailRequestUrl = `https://comento.cafe24.com/detail.php?req_no=${postNo}`
       const { data } = await this.axios.get(detailRequestUrl)
       return data.detail
     },

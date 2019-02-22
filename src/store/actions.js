@@ -2,7 +2,7 @@ import _ from 'lodash'
 import axios from 'axios'
 
 const accumulateContents = async (contents, interval, adPage, rest) => {
-  const adsRequestUrl = `http://comento.cafe24.com/ads.php?page=${adPage}&limit=1`
+  const adsRequestUrl = `https://comento.cafe24.com/ads.php?page=${adPage}&limit=1`
 
   if (contents.length <= interval) {
     return contents
@@ -28,7 +28,7 @@ export default {
     const order = query.order || 'desc'
     const category = query.category || 1
     const interval = 4
-    const postRequestUrl = `http://comento.cafe24.com/request.php?page=${page}&ord=${order}&category=${category}`
+    const postRequestUrl = `https://comento.cafe24.com/request.php?page=${page}&ord=${order}&category=${category}`
 
     if (context.state.accumulatedLength) {
       const response = await axios.get(postRequestUrl)
@@ -37,7 +37,7 @@ export default {
       const rest = context.state.accumulatedLength % interval
       let adPage = context.state.adsLength + 1
       if (!rest) {
-        const adsResponse = await axios.get(`http://comento.cafe24.com/ads.php?page=${adPage}&limit=1`)
+        const adsResponse = await axios.get(`https://comento.cafe24.com/ads.php?page=${adPage}&limit=1`)
         const ad = adsResponse.data.list.map(o => {
           o.isAd = true
           return o

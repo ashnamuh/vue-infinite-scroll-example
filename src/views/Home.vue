@@ -56,7 +56,7 @@ export default {
     },
   },
   async created () {
-    const { data } = await this.axios.get(`http://comento.cafe24.com/category.php`)
+    const { data } = await this.axios.get(`https://comento.cafe24.com/category.php`)
     this.categories = data.list
   },
   methods: {
