@@ -41,8 +41,6 @@ export default {
 <style scoped lang="less">
 .post-card{
   margin-top: 20px;
-  // height: 200px;
-  // background-color: #ffff00;
   header {
     background-color: #00c854;
     color: #ffffff;
