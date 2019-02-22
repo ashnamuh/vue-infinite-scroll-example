@@ -34,8 +34,6 @@ export default {
       default: false
     }
   },
-  data () {
-  },
   methods: {
     closeModal () {
       this.$emit('update:visible', false)
