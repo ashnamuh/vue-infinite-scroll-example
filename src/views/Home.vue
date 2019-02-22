@@ -17,7 +17,10 @@
       <span class="pointer-cursor" @click="resetOrder('desc')" :class="{active: order === 'desc' }">내림차순</span>
     </header>
     <div class="contents">
-      <PostCard v-for="post in contents" :key="post.no" :post="post" :categories="categories"></PostCard>
+      <div v-for="post in contents" :key="post.no">
+        <PostCard v-if="!post.isAd" :post="post" :categories="categories"></PostCard>
+        <AdCard v-if="post.isAd" :ad="post"></AdCard>
+      </div>
     </div>
     <div v-infinite-scroll="loadMore"
       infinite-scroll-disabled="isLoading"
